@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理</title>
+    <style type="text/css">
+        table
+        {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table td, table th
+        {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+        body{
+            background: image(static/images/backimg1.jpg);
+            background-size: 100% 100%;
+            /*opacity: 0.5%;*/
+        }
+    </style>
+</head>
+<body>
+<table width="90%" class="table">
+    <caption>
+        <h2>用户管理</h2>
+
+        <h3>
+            <div style="text-align: left">
+                <a th:href="@{/admin/add}">新增</a>
+            </div>
+            <div style="text-align: right">
+                <a th:href="@{/admin/updateadmin}">超级管理员信息修改</a>
+            </div>
+        </h3>
+    </caption>
+    <thead>
+    <tr>
+        <th>
+            编号
+        </th>
+        <th>
+            图片
+        </th>
+        <th>
+            昵称
+        </th>
+        <th>
+            用户名
+        </th>
+        <th>
+            邮箱
+        </th>
+        <th>
+            类型
+        </th>
+        <th>
+            创建时间
+        </th>
+        <th>
+            更新时间
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+    </thead>
+    <tr th:each="user,stat:${page.records}">
+        <td th:text="${stat.count}">109</td>
+        <td th:text="${user.avatar}">109</td>
+        <td th:text="${user.nickname}">109</td>
+        <td th:text="${user.username}">109</td>
+        <td th:text="${user.email}">109</td>
+        <td th:text="${user.type}">109</td>
+        <td th:text="${#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')}">109</td>
+        <td th:text="${#dates.format(user.updateTime,'yyyy-MM-dd HH:mm:ss')}">109</td>
+        <td><a th:href="@{/admin/updateuser/{id}(id=${user.id})}">修改</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a th:href="@{/admin/deleteuser/{id}(id=${user.id})}">删除</a></td>
+    </tr>
+</table>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分类修改</title>
+  <div th:replace="common-user :: topscript"></div>
+</head>
+<body>
+
+<!--导航栏-->
+<div th:replace="common-user :: topcommon"></div>
+  <div class="m-padded-tb-hugex">
+  <div class="ui attached pointing menu">
+    <div class="ui container">
+      <div class="right menu">
+        <a href="#" class="teal active item">新增</a>
+        <a href="#" class="item">列表</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!--中间内容-->
+  <div  class="m-container-small m-padded-tb-massive">
+    <div class="ui container">
+      <form th:action="@{/user/updatetype}" method="post" class="ui form">
+        <input type="hidden" name="id">
+        <div class=" field">
+          <div class="ui left labeled input">
+            <label class="ui teal basic label">名称</label>
+            <input type="text" name="name" placeholder="分类名称" th:value="*{byId.name}">
+          </div>
+        </div>
+        <div class="ui error message"></div>
+        <div class="ui mini negative message">提示：不能修改已有的分类</div>
+        <div class="ui right aligned container">
+          <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
+          <button class="ui teal submit button">提交</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <!--底部栏-->
+<div th:replace="common-user :: footercommon"></div>
+<div th:replace="common-user :: footerscript"></div>
+<script>
+  $('.menu.toggle').click(function () {
+    $('.m-item').toggleClass('m-mobile-hide');
+  });
+
+  $('.ui.dropdown').dropdown({
+    on : 'hover'
+  });
+
+  $('.ui.form').form({
+    fields : {
+      title : {
+        identifier: 'name',
+        rules: [{
+          type : 'empty',
+          prompt: '请输入分类名称'
+        }]
+      }
+    }
+  });
+</script>
+</body>
+</html>

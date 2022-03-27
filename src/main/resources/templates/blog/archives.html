@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONESTAR-时间轴</title>
+  <link href="../static/images/me.jpg" th:href="@{/images/me.jpg}" rel="icon" type="image/x-ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+  <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+  <link rel="stylesheet" href="../static/css/timeline.css" th:href="@{/css/timeline.css}">
+</head>
+<body>
+
+  <!--导航-->
+  <div th:replace="common-blog :: commontop"></div>
+
+<!--时间轴内容-->
+  <div class="doc-container m-padded-tb-massivex m-opacity" id="doc-container">
+      <th:block>
+        <section class="timeline">
+          <ul >
+
+
+<!--            th:src="@{${timeaxis.picture}}"-->
+            <li class="" th:each="timeaxis:${timeAxis}">
+              <div>
+                <time th:text="${#dates.format(timeaxis.createTime,'yyyy-MM-dd')}" style="color: #08159a">2020/01/01</time>
+                <div class="scientist">
+                    <a href="#" target="_blank">
+                      <img th:src="@{${timeaxis.picture}}" height="150" width="350"></img>
+                      <h2 class="state" style="text-align:center;font-size: 16px;color: #08159a;" th:text="${timeaxis.name}">文章标题</h2>
+                    </a>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+      </th:block>
+  </div>
+
+
+
+  <!--底部栏-->
+  <div th:replace="common-blog :: commonfooter"></div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+  <script src="../static/lib/timeline/timeline.js" th:src="@{/lib/timeline/timeline.js}"></script>
+
+
+  <script>
+
+    // $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+
+    $('.menu.toggle').click(function () {
+      $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+      // 运行时间统计
+      function secondToDate(second) {
+          if (!second) {
+              return 0;
+          }
+          var time = new Array(0, 0, 0, 0, 0);
+          if (second >= 365 * 24 * 3600) {
+              time[0] = parseInt(second / (365 * 24 * 3600));
+              second %= 365 * 24 * 3600;
+          }
+          if (second >= 24 * 3600) {
+              time[1] = parseInt(second / (24 * 3600));
+              second %= 24 * 3600;
+          }
+          if (second >= 3600) {
+              time[2] = parseInt(second / 3600);
+              second %= 3600;
+          }
+          if (second >= 60) {
+              time[3] = parseInt(second / 60);
+              second %= 60;
+          }
+          if (second > 0) {
+              time[4] = second;
+          }
+          return time;
+      }
+      function setTime() {
+          /*此处为网站的创建时间*/
+          var create_time = Math.round(new Date(Date.UTC(2020, 01, 25, 15, 15, 15)).getTime() / 1000);
+          var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+          currentTime = secondToDate((timestamp - create_time));
+          currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
+              + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
+              + '秒';
+          document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+      }
+      setInterval(setTime, 1000);
+
+  </script>
+</body>
+</html>

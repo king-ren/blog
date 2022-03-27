@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>博客管理</title>
+  <div th:replace="common-user :: topscript"></div>
+</head>
+<body>
+
+<!--导航栏-->
+<div th:replace="common-user :: topcommon"></div>
+
+<br>
+<br>
+<br>
+
+  <!--中间内容-->
+  <div  class="m-padded-tb-massivex">
+    <div class="ui container">
+      <div class="ui success large  message">
+        <p align="center">念念不忘，必有回响</p>
+      </div>
+
+      <img src="../../static/images/backimg.jpg" alt="" class="ui rounded bordered fluid image">
+    </div>
+  </div>
+
+  <!--底部栏-->
+<div th:replace="common-user :: footercommon"></div>
+<div th:replace="common-user :: footerscript"></div>
+</body>
+</html>

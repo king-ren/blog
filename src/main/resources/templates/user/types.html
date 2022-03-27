@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分类管理</title>
+  <div th:replace="common-user :: topscript"></div>
+</head>
+<body>
+
+<!--导航栏-->
+<div th:replace="common-user :: topcommon"></div>
+
+  <div class="m-padded-tb-hugex">
+  <div class="ui attached pointing menu">
+    <div class="ui container">
+      <div class="right menu">
+        <a href="#" class="item">新增</a>
+        <a href="#" class="teal active item">列表</a>
+      </div>
+    </div>
+  </div>
+  </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <!--中间内容-->
+  <div  class="m-padded-tb-big">
+    <div class="ui container">
+      <div class="ui success message">
+        <i class="close icon"></i>
+        <div class="" th:text="${msg}">提示：操作成功！</div>
+      </div>
+      <table class="ui compact teal table">
+        <thead>
+          <tr align="center">
+            <th>ID</th>
+            <th>名称</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr align="center" th:each="type,stat:${page.records}">
+            <td th:text="${stat.count}">1</td>
+            <td th:text="${type.name}">我的故事</tdth>
+            <td>
+              <a th:href="@{/user/updatetype/{id}(id=${type.id},pn=${page.current})}" class="ui mini teal basic button">编辑</a>
+              <a th:href="@{/user/deletetype/{id}(id=${type.id},pn=${page.current})}"  onclick="return confirm('确定要删除该分类吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="6" >
+              <div class="ui inverted divided stackable grid">
+                <div class="three wide column" align="center">
+                  <a th:href="@{/user/typepage(pn=(${page.current} == '1'?'1':${page.current}-1))}" class="item">上一页</a>
+                </div>
+
+                <div class="ten wide column" align="center">
+                  <p>第 <span>[[${page.current}]]</span> 页，共 <span>[[${page.pages}]]</span> 页，有 <span>[[${page.total}]]</span> 条记录</p>
+                </div>
+
+                <div class="three wide column" align="center">
+                  <a th:href="@{/user/typepage(pn=(${page.current}==${page.pages}?'1':${page.current}+1))}" class="item">下一页</a>
+                </div>
+              </div>
+              <div align="center">
+              <a th:href="@{/user/addtype}">
+                <button type="button" class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>新增</button>
+              </a>
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <br>
+  <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <!--底部栏-->
+<div th:replace="common-user :: footercommon"></div>
+<div th:replace="common-user :: footerscript"></div>
+<script>
+  $('.menu.toggle').click(function () {
+    $('.m-item').toggleClass('m-mobile-hide');
+  });
+
+  $('.ui.dropdown').dropdown({
+    on : 'hover'
+  });
+
+  //消息提示关闭初始化
+  $('.message .close')
+          .on('click', function () {
+            $(this)
+                    .closest('.message')
+                    .transition('fade');
+          });
+
+</script>
+</body>
+</html>

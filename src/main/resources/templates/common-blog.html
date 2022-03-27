@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="commontop">
+    <nav class="gird-header">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui olive header item" style="font-family: STSong">KSir_Blog</h2>
+                <!--<div class="right m-item item m-mobile-hide">-->
+                <a th:href="@{/main}" class="m-item item m-mobile-hide "><i class="home icon"></i>首页</a>
+                <a th:href="@{/blog/typepage}" class="m-item item m-mobile-hide"><i class="clone outline icon"></i>分类</a>
+                <a th:href="@{/blog/timeaxis}" class="m-item item"><i class="clock icon"></i>时间轴</a>
+                <a th:href="@{/blog/musicpage}" class="m-item item m-mobile-hide"><i class="music icon"></i>音乐盒</a>
+<!--                <a href="#" class="m-item item m-mobile-hide"><i class="book icon"></i>留言板</a>-->
+                <a th:href="@{/blog/friend}" class="m-item item m-mobile-hide"><i class="pencil alternate icon"></i>友人帐</a>
+                <a th:href="@{/blog/photo}" class="m-item item m-mobile-hide"><i class="image icon"></i>照片墙</a>
+                <!--</div>-->
+                <div class="right m-item item m-mobile-hide">
+                    <form name="search" th:action="@{/blog/searchblog}" method="post" target="_blank">
+                        <div class="ui icon transparent input m-margin-tb-tiny" style="color: white">
+                            <input style="color: white" type="text" name="title" placeholder="Search....">
+                            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+</div>
+
+<div th:fragment="commonfooter">
+    <footer class="ui inverted vertical segment m-padded-tb-massive m-opacity">
+        <!--容器-->
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="four wide column">
+                    <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced m-margin-top-max" >联系我</div>
+                    <div class="ui inverted link list">
+                        <div href="#" class="m-text-thin">Email：1093918292@qq.com</div>
+                        <div href="#" class="m-text-thin">QQ：1093918292</div>
+                    </div>
+                </div>
+
+                <div class="four wide column" >
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <!--微信二维码-->
+                            <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced ">我的微信</div>
+                            <img  th:src="@{/images/oneStarWechat.jpg}" class="ui m-margin-top rounded image" alt="" style="width: 110px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="four wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <!--QQ二维码-->
+                            <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced " >我的QQ</div>
+                            <img th:src="@{/images/qq.jpg}" class="ui m-margin-top rounded image" alt="" style="width: 110px">
+                        </div>
+                    </div>
+                </div>
+                <!--博客运行时间统计-->
+                <div class="four wide column">
+                    <div style="font-size: large;font-weight: bold" class="ui inverted  m-text-thin m-text-spaced m-margin-top">登科后</div>
+                    <!--<p id="htmer_time" class="item m-text-thin"></p>-->
+                    <div id="blog-message">
+                        <div class="ui inverted link list" style="align-content: center;margin-top: 10px">
+                            <div class="m-text-thin" style="text-align: left;margin-left: 75px;">
+                                昔日龌龊不足夸
+                            </div>
+                            <div class="m-text-thin" style="text-align: left;margin-left: 75px">
+                                今朝放荡思无涯
+                            </div>
+                            <div class="m-text-thin" style="text-align: left;margin-left: 75px">
+                                春风得意马蹄疾
+                            </div>
+                            <div class="m-text-thin" style="text-align: left;margin-left: 75px">
+                                一日看尽长安花
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+<!--            <div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced">我的客栈已营业：<span id="htmer_time" class="item m-text-thin"></span> (*๓´╰╯`๓)</div>-->
+<!--            <a rel="nofollow" href="http://www.beian.miit.gov.cn" target="_blank">赣ICP备20004408号-1</a>-->
+        </div>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+create table t_admin
+(
+    id       int auto_increment
+        primary key,
+    admin    varchar(20)  default '' not null,
+    password varchar(255) default '' not null
+);
+
+INSERT INTO blog.t_admin (id, admin, password) VALUES (9, 'admin', '9de8bef5213ff853197d84ede9476ac1');
+create table t_blog
+(
+    id              bigint auto_increment
+        primary key,
+    appreciation    bit           not null,
+    commentabled    bit           not null,
+    content         longtext      null,
+    create_time     datetime(6)   null,
+    first_picture   varchar(1024) null,
+    flag            varchar(255)  null,
+    published       bit           not null,
+    recommend       bit           not null,
+    share_statement bit           not null,
+    title           varchar(255)  null,
+    update_time     datetime(6)   null,
+    views           int default 0 null,
+    type_id         bigint        null,
+    user_id         bigint        null,
+    description     longtext      null
+);
+create table t_comment
+(
+    id                int auto_increment
+        primary key,
+    content           varchar(255) null,
+    create_time       datetime(6)  null,
+    email             varchar(255) null,
+    nickname          varchar(255) null,
+    blog_id           bigint       null,
+    parent_comment_id bigint       null,
+    avatar            varchar(255) null,
+    admin_comment     bit          not null
+);
+create table t_firendlink
+(
+    id            int auto_increment
+        primary key,
+    name          varchar(20)  default '' not null,
+    blog_address  varchar(200) default '' not null,
+    photo_address varchar(200) default '' not null,
+    create_time   datetime                null
+);
+create table t_picture
+(
+    id              int auto_increment
+        primary key,
+    name            varchar(20)  default '' not null,
+    picture_time    varchar(200) default '' not null,
+    picture_address varchar(200) default '' not null,
+    description     longtext                null
+);
+create table t_tag
+(
+    id          int auto_increment
+        primary key,
+    name        varchar(500) null,
+    user_id     int          null,
+    create_time datetime     null,
+    picture     longtext     null
+);
+create table t_type
+(
+    user_id int          null,
+    id      bigint auto_increment
+        primary key,
+    name    varchar(255) null
+);
+create table t_user
+(
+    id          int auto_increment
+        primary key,
+    avatar      varchar(5000) null,
+    create_time datetime(6)   null,
+    email       varchar(255)  null,
+    nickname    varchar(255)  null,
+    password    varchar(255)  null,
+    type        varchar(255)  null,
+    update_time datetime(6)   null,
+    username    varchar(255)  null
+);
+
+

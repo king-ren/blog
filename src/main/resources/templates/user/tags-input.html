@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类新增</title>
+    <div th:replace="common-user :: topscript"></div>
+</head>
+<body>
+
+<!--导航栏-->
+<div th:replace="common-user :: topcommon"></div>
+
+
+<div class="m-padded-tb-hugex">
+    <div class="ui attached pointing menu">
+        <div class="ui container">
+            <div class="right menu">
+                <a href="#" class="teal active item">新增</a>
+                <a href="#" class="item">列表</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--中间内容-->
+<div class="m-container-small m-padded-tb-massive">
+    <div class="ui container">
+        <form th:action="${operation} == 'add' ? @{/user/addtag} : @{/user/updatetag}" method="post" class="ui form">
+            <input type="hidden" name="id">
+            <div class=" field">
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">内容</label>
+                    <input type="text" name="name" placeholder="内容" th:value="${byId} == null? '' : ${byId.name}" >
+                </div>
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">图片地址</label>
+                    <input type="text" name="picture" placeholder="图片地址" th:value="${byId} == null? '' : ${byId.picture}">
+                </div>
+            </div>
+            <div class="ui error message"></div>
+            <div class="ui mini negative message">提示：不能添加重复的内容</div>
+            <div class="ui right aligned container">
+                <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+                <button class="ui teal submit button">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--底部栏-->
+<div th:replace="common-user :: footercommon"></div>
+<div th:replace="common-user :: footerscript"></div>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+
+    $('.ui.form').form({
+        fields: {
+            name: {
+                identifier: 'name',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入内容'
+                }]
+            },
+            picture : {
+                identifier: 'picture',
+                rules: [{
+                    type : 'empty',
+                    prompt: '请输入图片地址'
+                }]
+            }
+        }
+    });
+</script>
+</body>
+</html>

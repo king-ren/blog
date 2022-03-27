@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>超级管理员登录</title>
+  <link href="../../static/images/me.jpg" th:href="@{/images/me.jpg}" rel="icon" type="image/x-ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+  <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+<body>
+
+<br>
+<br>
+<br>
+ <div class="m-container-small m-padded-tb-massive" style="max-width: 30em !important;">
+   <div class="ur container">
+     <div class="ui middle aligned center aligned grid">
+       <div class="column">
+         <h2 class="ui teal image header">
+           <div class="content">
+             修改用户
+           </div>
+         </h2>
+         <form class="ui large form" method="post" th:action="@{/admin/updateuser}" enctype="multipart/form-data">
+           <div class="ui  segment">
+             <div class="field">
+               <div class="ui left icon input">
+                 <i class="user icon"></i>
+                 <input type="text" th:name="username" placeholder="用户名">
+               </div>
+             </div>
+             <div class="field">
+               <div class="ui left icon input">
+                 <i class="lock icon"></i>
+                 <input type="password" th:name="password" placeholder="密码">
+               </div>
+             </div>
+             <div class="field">
+               <div class="ui left icon input">
+                 <i class="lock icon"></i>
+                 <input type="text" th:name="nickname" placeholder="昵称">
+               </div>
+             </div>
+<!--             <div class="field">-->
+<!--               <div class="ui left icon input">-->
+<!--                 <i class="lock icon"></i>-->
+<!--                 <input type="email" th:name="email" placeholder="邮件">-->
+<!--               </div>-->
+<!--             </div>-->
+             <div class="field">
+               <div class="ui left icon input">
+                 <i class="lock icon"></i>
+                 <input type="text" th:name="type" placeholder="角色、类型">
+               </div>
+             </div>
+
+             </div>
+             <div class="field">
+               <div class="ui left icon input">
+                 <i class="lock icon"></i>
+                 <input type="text" th:name="avatar" placeholder="头像图片">
+               </div>
+             </div>
+             <button class="ui fluid large teal submit button">提   交</button>
+
+           <div class="ui error mini message"></div>
+
+         </form>
+
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/semantic.min.js}"></script>
+
+
+
+<script>
+  $('.ui.form').form({
+    fields : {
+      username : {
+        identifier: 'username',
+        rules: [{
+          type : 'empty',
+          prompt: '请输入用户名'
+        }]
+      },
+      password : {
+        identifier: 'password',
+        rules: [{
+          type : 'empty',
+          prompt: '请输入密码'
+        }]
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
